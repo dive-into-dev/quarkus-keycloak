@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "7c84e80b-9b4f-4979-a860-853a944ebaed",
+		"name": "Keycloak",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23224732"
+	},
+	"item": [
+		{
+			"name": "Token",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "quarkus-be",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "IqyLmLSZ9XrWKEZBsIvd0BBgOnGvloAc",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIyNDA1Y2Q5Mi01MDcxLTRkYzQtODQ4Mi0zYTU5MzNiMTc3MjAifQ.eyJleHAiOjE2ODA0NDY5NzYsImlhdCI6MTY4MDQyODk3NiwianRpIjoiMzgzN2EyMjYtMGE3YS00MTFmLWI5Y2QtMzVmMjU0MWNiZmYxIiwiaXNzIjoiaHR0cDovLzEyNy4wLjAuMTo4MDgxL3JlYWxtcy9kaXZlLWRldiIsImF1ZCI6Imh0dHA6Ly8xMjcuMC4wLjE6ODA4MS9yZWFsbXMvZGl2ZS1kZXYiLCJzdWIiOiIxZmE1YzllOS04YTZlLTQ2NzUtYmZhZi1mMmQ3MjI1NzAwMmYiLCJ0eXAiOiJSZWZyZXNoIiwiYXpwIjoicXVhcmt1cy1iZSIsInNlc3Npb25fc3RhdGUiOiIzNGFmZTA3ZC00YmEwLTQ0YzItOWVmNy1mMGViZjVmM2MyMjYiLCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJzaWQiOiIzNGFmZTA3ZC00YmEwLTQ0YzItOWVmNy1mMGViZjVmM2MyMjYifQ.7I9nqFnfzNWnuFpENoBdBdl5_Qrz5yctSDj2BGO54i0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/realms/dive-dev/protocol/openid-connect/token",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"realms",
+						"dive-dev",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Introspect Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJaUTJHaTRwd1RYQk5ZdlJ6MGZ1dlJCeFJVUUJHc3d5TjNFcEY3MV92VHNnIn0.eyJleHAiOjE2ODA0MjczNDQsImlhdCI6MTY4MDQyNzA0NCwianRpIjoiNjkzZGM4MjgtYTg4ZC00ZDFjLTg2YWUtN2ZjYjQ1ZjI2ZWFmIiwiaXNzIjoiaHR0cDovLzEyNy4wLjAuMTo4MDgxL3JlYWxtcy9kaXZlLWRldiIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiIxZmE1YzllOS04YTZlLTQ2NzUtYmZhZi1mMmQ3MjI1NzAwMmYiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJxdWFya3VzLWJlIiwic2Vzc2lvbl9zdGF0ZSI6IjkyMzk2NThmLWRkYmItNDY2MC1iYTlkLTRhN2E2ZGRkOWJmMiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiKiJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZGVmYXVsdC1yb2xlcy1kaXZlLWRldiIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJzaWQiOiI5MjM5NjU4Zi1kZGJiLTQ2NjAtYmE5ZC00YTdhNmRkZDliZjIiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IlNhZ2FyIEt1bWFyIiwicHJlZmVycmVkX3VzZXJuYW1lIjoic2FnYXIiLCJnaXZlbl9uYW1lIjoiU2FnYXIiLCJmYW1pbHlfbmFtZSI6Ikt1bWFyIiwiZW1haWwiOiJzYWdhckBkZW1vLmNvbSJ9.N_hHVq7ZYwuDGUkFNBkzh0Smp1WmWCqdlFAP57ZgSC585-7VPhKsznovthAdpeXltBNjlZL5EsYUVEmIaprzLskjRQGY8kB4zaCQvY2PykwQzlGP_BYIAktaZKTlAACas716ME_Xq96vq4a2Z87QyAvh1OD5xLbLZz1M2U0OCMLy096BdNXzkXwnhwCLM-wy-totWLOiM_rgy7Ac1nMbnBG3P09PHob6nnk1fnrZ_6r-Hfi-2bw1exRcQB6gxfYULkoAwA63PoHfMv9KsWKkBA9duUvdpq_7RMhA6IKzbOzq7A_d_gvAu8ikKX1efNSdBC20T3LXHwNUn-4ZTAXXWQ",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "quarkus-be",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "IqyLmLSZ9XrWKEZBsIvd0BBgOnGvloAc",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/realms/dive-dev/protocol/openid-connect/token/introspect",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"realms",
+						"dive-dev",
+						"protocol",
+						"openid-connect",
+						"token",
+						"introspect"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "refresh_token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIyNDA1Y2Q5Mi01MDcxLTRkYzQtODQ4Mi0zYTU5MzNiMTc3MjAifQ.eyJleHAiOjE2ODA0MjkzNjcsImlhdCI6MTY4MDQyNzU2NywianRpIjoiMzU3ZjlhNDgtYmUzMi00MjA2LWI1ZjItMjkwMGJhZjgwNDhlIiwiaXNzIjoiaHR0cDovLzEyNy4wLjAuMTo4MDgxL3JlYWxtcy9kaXZlLWRldiIsImF1ZCI6Imh0dHA6Ly8xMjcuMC4wLjE6ODA4MS9yZWFsbXMvZGl2ZS1kZXYiLCJzdWIiOiIxZmE1YzllOS04YTZlLTQ2NzUtYmZhZi1mMmQ3MjI1NzAwMmYiLCJ0eXAiOiJSZWZyZXNoIiwiYXpwIjoicXVhcmt1cy1iZSIsInNlc3Npb25fc3RhdGUiOiI4NTI4MDI5MC0xM2NlLTQ4ZjctOGVhZi1hMDNkN2EzYzBhMDEiLCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJzaWQiOiI4NTI4MDI5MC0xM2NlLTQ4ZjctOGVhZi1hMDNkN2EzYzBhMDEifQ.VMF3jYdzp7bw4zLLvRbNjlK6ZXiXDHypNIKKSA5irk0",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "quarkus-be",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "IqyLmLSZ9XrWKEZBsIvd0BBgOnGvloAc",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/realms/dive-dev/protocol/openid-connect/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"realms",
+						"dive-dev",
+						"protocol",
+						"openid-connect",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
