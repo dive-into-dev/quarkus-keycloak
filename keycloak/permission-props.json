@@ -1,0 +1,33 @@
+{
+  "quarkus.http.auth" : {
+    "policy" : {
+      "admin-role-policy" : {
+        "roles-allowed" : ["admin"]
+      },
+      "manager-role-policy" : {
+        "roles-allowed" : ["manager"]
+      },
+      "update-price-policy" : {
+        "roles-allowed" : ["owner"]
+      }
+    },
+    "permission": {
+      "public-api" : {
+        "paths" : ["/restaurant/public/list", "/restaurant/public/menu/*"],
+        "policy" : "permit"
+      },
+      "admin-role-api" : {
+        "paths" : ["/restaurant"],
+        "policy" : "admin-role-policy"
+      },
+      "manager-role-apis" : {
+        "paths" : ["/restaurant/menu", "/order/{restaurantId}/list", "/order/{orderId}"],
+        "policy" : "manager-role-policy"
+      },
+      "update-price-api" : {
+        "paths" : ["/restaurant/menu/item/{itemId}/{price}"],
+        "policy" : "update-price-policy"
+      }
+    }
+  }
+}

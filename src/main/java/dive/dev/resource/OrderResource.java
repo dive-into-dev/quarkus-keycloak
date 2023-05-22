@@ -2,6 +2,7 @@ package dive.dev.resource;
 
 import dive.dev.entity.Order;
 import dive.dev.entity.OrderItem;
+import io.quarkus.oidc.runtime.OidcAuthenticationMechanism;
 import io.quarkus.security.Authenticated;
 
 import javax.annotation.security.RolesAllowed;
@@ -13,19 +14,19 @@ import javax.ws.rs.PathParam;
 import java.util.List;
 
 @Path("/order")
-@Authenticated
+//@Authenticated
 public class OrderResource {
 
     @GET
     @Path("/{restaurantId}/list")
-    @RolesAllowed("manager")
+    //@RolesAllowed("manager")
     public List<Order> getOrders(@PathParam("restaurantId") Long restaurantId) {
         return Order.find("restaurantId = ?1", restaurantId).list();
     }
 
     @GET
     @Path("/{orderId}")
-    @RolesAllowed("manager")
+    //@RolesAllowed("manager")
     public Order getOrderDetails(@PathParam("orderId") Long orderId) {
         Order order = Order.findById(orderId);
         order.setOrderItems(OrderItem.find("orderId = ?1", orderId).list());
