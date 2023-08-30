@@ -4,6 +4,7 @@ import dive.dev.entity.Order;
 import dive.dev.entity.OrderItem;
 import io.quarkus.oidc.runtime.OidcAuthenticationMechanism;
 import io.quarkus.security.Authenticated;
+import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement;
 
 import javax.annotation.security.RolesAllowed;
 import javax.transaction.Transactional;
@@ -19,6 +20,7 @@ public class OrderResource {
 
     @GET
     @Path("/{restaurantId}/list")
+    @SecurityRequirement(name = "Keycloak")
     //@RolesAllowed("manager")
     public List<Order> getOrders(@PathParam("restaurantId") Long restaurantId) {
         return Order.find("restaurantId = ?1", restaurantId).list();
@@ -26,6 +28,7 @@ public class OrderResource {
 
     @GET
     @Path("/{orderId}")
+    @SecurityRequirement(name = "Keycloak")
     //@RolesAllowed("manager")
     public Order getOrderDetails(@PathParam("orderId") Long orderId) {
         Order order = Order.findById(orderId);
@@ -35,6 +38,7 @@ public class OrderResource {
 
     @POST
     @Transactional
+    @SecurityRequirement(name = "Keycloak")
     public Order createOrder(Order order) {
         order.persist();
         List<OrderItem> orderItems = order.getOrderItems();

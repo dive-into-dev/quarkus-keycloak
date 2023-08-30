@@ -27,6 +27,7 @@ public class RestaurantResource {
 
     @GET
     @Path("/public/menu/{restaurantId}")
+    @SecurityRequirement(name = "Keycloak")
     //@PermitAll
     public Menu getMenu(@PathParam("restaurantId") Long restaurantId) {
         Menu menu = Menu.find("restaurantId = ?1 and active = 1", restaurantId).firstResult();
@@ -36,15 +37,30 @@ public class RestaurantResource {
 
     @POST
     @Transactional
+    @SecurityRequirement(name = "Keycloak")
     //@RolesAllowed("admin")
     public Restaurant createRestaurant(Restaurant restaurant) {
         restaurant.persist();
         return restaurant;
     }
 
+    @PUT
+    @Transactional
+    @SecurityRequirement(name = "Keycloak")
+    //@RolesAllowed("owner")
+    public Restaurant updateRestaurant(Restaurant restaurant) {
+        Restaurant rest = Restaurant.findById(restaurant.id);
+        rest.setName(restaurant.getName());
+        rest.setLocation(restaurant.getLocation());
+        rest.setType(restaurant.getType());
+        rest.persist();
+        return rest;
+    }
+
     @POST
     @Path("/menu")
     @Transactional
+    @SecurityRequirement(name = "Keycloak")
     //@RolesAllowed("manager")
     public Menu createMenu(Menu menu) {
         menu.persist();
